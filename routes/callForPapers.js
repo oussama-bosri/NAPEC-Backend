@@ -1,8 +1,33 @@
 import express from 'express';
-import { submitCallForPapers } from '../controllers/callForPapersController.js';
 
-export const router = express.Router();
+const router = express.Router();
 
-router.post('/submit', submitCallForPapers);
+// Define your routes
+router.post('/submit', (req, res) => {
+  const requiredFields = [
+    "companyAddress",
+    "companyWebsite",
+    "firstName",
+    "lastName",
+    "position",
+    "email",
+    "phone",
+    "mobile",
+    "description",
+    "speakerBio"
+  ];
 
-console.log('Call for papers routes registered.');
+  const missingFields = requiredFields.filter(field => !req.body[field]);
+  if (missingFields.length > 0) {
+    return res.status(400).json({
+      error: "Required fields are missing",
+      missingFields
+    });
+  }
+
+  // Process and save data here...
+  res.status(201).json({ message: "Submission successful" });
+});
+
+// Export the router
+export { router };
