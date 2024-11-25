@@ -15,6 +15,9 @@ export const submitCallForPapers = async (req, res) => {
       speakerBio
     } = req.body;
 
+    // Log the incoming data
+    console.log('Data being saved:', req.body);
+
     // Validate the incoming data
     if (!companyAddress || !companyWebsite || !firstName || !email || !description || !speakerBio) {
       return res.status(400).json({ error: 'Required fields are missing' });
@@ -34,8 +37,14 @@ export const submitCallForPapers = async (req, res) => {
       speakerBio
     });
 
+    // Save to database
     await callForPapersEntry.save();
-    res.status(201).json({ message: 'Submission successful', entryId: callForPapersEntry._id });
+    console.log('Data saved successfully');
+    res.status(201).json({
+      message: 'Submission successful',
+      entryId: callForPapersEntry._id
+    });
+
   } catch (error) {
     console.error('Error in submitCallForPapers:', error);
     res.status(500).json({ error: 'Internal server error' });
