@@ -6,7 +6,6 @@ import express from 'express';
 import connectDB from './models/db.js';
 import { router as callForPapersRouter } from './routes/callForPapers.js';
 import { router as mediaRegistrationRouter } from './routes/mediaRegistrationRoutes.js';
-import { router as visitorRegistrationRouter } from './routes/visitorRegistration.js';
 
 connectDB();
 
@@ -18,13 +17,6 @@ app.use(express.json());
 
 app.use('/api/call-for-papers', callForPapersRouter);
 app.use('/api/media', mediaRegistrationRouter);
-app.use('/api/visitor-registration', visitorRegistrationRouter);
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something went wrong!');
-});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
