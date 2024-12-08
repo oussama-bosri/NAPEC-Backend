@@ -7,7 +7,6 @@ import { router as callForPapersRouter } from './routes/callForPapers.js';
 import { router as mediaRegistrationRouter } from './routes/mediaRegistrationRoutes.js';
 import { router as visitorRegistrationRouter } from './routes/visitorRegistration.js';
 import standBookingRoutes from './routes/standBookingRoutes.js';
-import delegateRoutes from './routes/delegateRoutes.js';
 connectDB();
 
 const app = express();
@@ -20,7 +19,6 @@ app.use('/api/call-for-papers', callForPapersRouter);
 app.use('/api/media', mediaRegistrationRouter);
 app.use('/api/visitor-registration', visitorRegistrationRouter);
 app.use('/api/stand-booking', standBookingRoutes);
-app.use('/api', delegateRoutes);
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);

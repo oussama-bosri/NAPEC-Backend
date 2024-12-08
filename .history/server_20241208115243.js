@@ -20,7 +20,6 @@ app.use('/api/call-for-papers', callForPapersRouter);
 app.use('/api/media', mediaRegistrationRouter);
 app.use('/api/visitor-registration', visitorRegistrationRouter);
 app.use('/api/stand-booking', standBookingRoutes);
-app.use('/api', delegateRoutes);
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
